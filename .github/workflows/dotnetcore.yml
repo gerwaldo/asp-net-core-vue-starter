@@ -17,4 +17,13 @@ jobs:
         dotnet-version: 3.1.101
     - run: dotnet build -c Release
     - run: dotnet test -c Release
-    - run: dotnet publish -c Release -o gab2020-web
+    - run: dotnet publish -c Release -o gab2020linz-web
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: Azure/webapps-deploy@v1
+      with:
+      publish-profile: ${{ secrets.AzureWebAppPublishProfile }}
+      package: ./gab2020linz-web
