@@ -23,7 +23,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: Azure/webapps-deploy@v1
+    - name: Azure WebApp
+      uses: Azure/webapps-deploy@v1
       with:
-      publish-profile: ${{ secrets.AzureWebAppPublishProfile }}
-      package: ./gab2020linz-web
+        # Publish profile (*.publishsettings) file contents with Web Deploy secrets
+        publish-profile: ${{ secrets.AzureWebAppPublishProfile }}
+        package: ./gab2020linz-web
